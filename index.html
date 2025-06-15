@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form AJAX Keren</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #0072ff;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0072ff;
+            outline: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        #response {
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .success {
+            color: #28a745;
+        }
+
+        .error {
+            color: #dc3545;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                background-color: #ffffff;
+            }
+            to {
+                background: linear-gradient(135deg, #00c6ff, #0072ff);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Input Nama</h1>
+        <form id="nameForm">
+            <label for="name">Nama Lengkap:</label>
+            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda..." required>
+            <button type="submit">Kirim</button>
+        </form>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('name').value.trim();
+            const responseDiv = document.getElementById('response');
+
+            if (nameInput) {
+                responseDiv.textContent = `✅ Berhasil! Halo, ${nameInput}. Data Anda telah tersimpan.`;
+                responseDiv.className = "success";
+            } else {
+                responseDiv.textContent = "❌ Gagal! Nama tidak boleh kosong.";
+                responseDiv.className = "error";
+            }
+        });
+    </script>
+</body>
+</html>
